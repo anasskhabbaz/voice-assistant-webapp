@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Voice Assistant</title>
+    <title>Webhook Button</title>
 </head>
 <body>
-    <button id="activateAssistant">Activate AI Assistant</button>
-    
-    <script src="script.js"></script>
+    <h1>Webhook Button</h1>
+    <button id="myButton">Send Data</button>
+
+    <script>
+        document.getElementById('myButton').addEventListener('click', function() {
+            fetch('https://hook.eu2.make.com/u8eezau3iwpj9563g62ww9hsol5p1td0', {  // Replace with your actual webhook URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ key: 'value' })  // Replace with actual data
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>
