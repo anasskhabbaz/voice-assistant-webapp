@@ -1,14 +1,15 @@
-from flask import Flask, jsonify, request, time
+from flask import Flask, request, jsonify
 
-# Initialize Flask app
 app = Flask(__name__)
 
-# Create a simple endpoint
-@app.route('/api/hello', methods=['GET'])
-def hello_world():
-    return jsonify({"message": "Hello, World!"})
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    data = request.json
+    # Process data here
+    print(data)  # For debugging purposes
+    # Connect to VAPI AI here
+    # Example: response = some_vapi_ai_function(data)
+    return jsonify({'status': 'success'}), 200
 
-# Start the Flask server
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8080)
-
+    app.run(port=5000)  # You can change the port if needed
